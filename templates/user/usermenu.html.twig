@@ -1,0 +1,24 @@
+<div class="span4">
+    <aside>
+        <div class="widget">
+            <form class="form-search">
+                <input placeholder="Type something" type="text" class="input-medium search-query">
+                <button type="submit" class="btn btn-flat btn-color">Search</button>
+            </form>
+        </div>
+        <div class="widget">
+            <h4>User Menu</h4>
+            <img alt="image" src="{{asset('uploads/'~app.user.image)}}" style="height: 80px" class="rounded-circle mr-1">
+            {{ app.user.name }}
+            {{ app.user.surname }}
+            <ul class="cat">
+                <li><a href="/user">My Profile</a></li>
+                <li><a href="/user/car">My Cars</a></li>
+                <li><a href="/user/comments">My Comments</a></li>
+                <li><a href="/user/reservations">My Reservation</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+
+    </aside>
+</div>

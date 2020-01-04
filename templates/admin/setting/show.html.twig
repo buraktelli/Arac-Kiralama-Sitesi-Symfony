@@ -1,0 +1,123 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Setting{% endblock %}
+
+{% block body %}
+    <div class="main-content">
+        <section class="section">
+            <div class="section-header">
+            </div>
+            <div class="section-body">
+                <h1>Setting</h1>
+
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ setting.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Title</th>
+                        <td>{{ setting.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Keywords</th>
+                        <td>{{ setting.keywords }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ setting.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Company</th>
+                        <td>{{ setting.company }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{ setting.address }}</td>
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <td>{{ setting.phone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fax</th>
+                        <td>{{ setting.fax }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ setting.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Smtpserver</th>
+                        <td>{{ setting.smtpserver }}</td>
+                    </tr>
+                    <tr>
+                        <th>Smtpemail</th>
+                        <td>{{ setting.smtpemail }}</td>
+                    </tr>
+                    <tr>
+                        <th>Smtppassword</th>
+                        <td>{{ setting.smtppassword }}</td>
+                    </tr>
+                    <tr>
+                        <th>Smtpport</th>
+                        <td>{{ setting.smtpport }}</td>
+                    </tr>
+                    <tr>
+                        <th>Facebook</th>
+                        <td>{{ setting.facebook }}</td>
+                    </tr>
+                    <tr>
+                        <th>Instagram</th>
+                        <td>{{ setting.instagram }}</td>
+                    </tr>
+                    <tr>
+                        <th>Twitter</th>
+                        <td>{{ setting.twitter }}</td>
+                    </tr>
+                    <tr>
+                        <th>Aboutus</th>
+                        <td>{{ setting.aboutus|raw}}</td>
+                    </tr>
+                    <tr>
+                        <th>Contact</th>
+                        <td>{{ setting.contact|raw }}</td>
+                    </tr>
+                    <tr>
+                        <th>Reference</th>
+                        <td>{{ setting.reference|raw }}</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>{{ setting.status }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <a href="{{ path('setting_index') }}">back to list</a>
+                <div class="col-md-2">
+                    <td>
+                        <a href="{{ path('setting_edit', {'id': setting.id}) }}" class="btn btn-block btn-info">edit</a>
+                    </td>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- General JS Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="public/assets/js/stisla.js"></script>
+
+    <!-- JS Libraies -->
+
+    <!-- Template JS File -->
+    <script src="{{asset('assets')}}/js/scripts.js"></script>
+    <script src="{{asset('assets')}}/js/custom.js"></script>
+
+    <!-- Page Specific JS File -->
+{% endblock %}

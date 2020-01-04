@@ -1,0 +1,72 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{data[0].title}}{% endblock %}
+{% block keywords %}{{data[0].keywords}}{% endblock %}
+{% block description %}{{data[0].description}}{% endblock %}
+
+{% block slider %}{% include('home/slider.html.twig') %}{% endblock %}
+{% block body %}
+
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+                {% for car in cars %}
+                    <div class="span3 features">
+                        <img src="{{asset('uploads/' ~ car.image )}}" style="height: 140px">
+                        <i class="icon-circled icon-32 icon-suitcase left active"></i>
+                        <h4>{{car.title}}</h4>
+                        <div class="dotted_line">
+                        </div>
+                        <p class="left">
+                            {{ car.description }}
+                        </p>
+                        <a href="{{ path('car_show', {'id': car.id}) }}">Learn more</a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="span12">
+
+                    <!-- end tagline -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="home-posts">
+                    <div class="span12">
+                        <h3>Last Inserted 8 Cars</h3>
+                    </div>
+                    {% for car in lastcars %}
+                        <div class="span3">
+                            <div class="post-image">
+                                <a href="{{asset('uploads/' ~ car.image )}}">
+                                    <img src="{{asset('uploads/' ~ car.image )}}" alt="" style="height: 140px">
+                                </a>
+                            </div>
+                            <div class="entry-meta">
+                                <a href="{{ path('car_show', {'id': car.id}) }}"><i class="icon-square icon-48 icon-pencil left"></i></a>
+                                <span class="date"></span>
+                            </div>
+                            <!-- end .entry-meta -->
+                            <div class="entry-body">
+                                <a href="{{ path('car_show', {'id': car.id}) }}">
+                                    <h5 class="title">{{car.title}}</h5>
+                                </a>
+                                <p>
+                                    {{ car.description }}
+                                </p>
+                            </div>
+                            <!-- end .entry-body -->
+                            <div class="clear">
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="span3">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

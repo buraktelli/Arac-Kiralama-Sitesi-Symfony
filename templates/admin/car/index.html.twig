@@ -1,0 +1,103 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Car Page{% endblock %}
+
+{% block body %}
+
+    <SCRIPT language="JavaScript" type="text/javascript">
+        function openWin(windowUrl, windowName, windowFeatures) { window.open(windowUrl, windowName, windowFeatures);}
+    </SCRIPT>
+
+
+    <div class="main-content">
+        <section class="section">
+            <div class="section-header">
+                <h1>Car List</h1>
+            </div>
+            <div class="section-body">
+
+                <div class="col-md-2">
+                    <a href="{{ path('admin_car_new') }}" class="btn btn-block btn-info">Create new</a>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Category</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Marka</th>
+                        <th>Model</th>
+                        <th>Phone</th>
+                        <th>User</th>
+                        <th>I.Galerry</th>
+                        <th>Status</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for car in cars %}
+                        <tr>
+                            <td>{{ car.id }}</td>
+                            <td>{{ car.catname}}</td>
+                            <td>{{ car.title }}</td>
+                            <td>{{ car.description }}</td>
+                            <td>
+                                <img src="{{asset('uploads/' ~ car.image )}}" height="40">
+                            </td>
+                            <td>{{ car.marka }}</td>
+                            <td>{{ car.model }}</td>
+                            <td>{{ car.phone }}</td>
+                            <td>
+                                <a href="{{ path('admin_user_show', {'id': car.userid}) }}">
+                                    {{ car.name }} {{ car.surname }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="javascript:openWin('{{ path('admin_image_new', {'id': car.id }) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizable=no,width=900,height=600');">
+                                    <img src="{{ asset('images') }}/gallery.jpg" height="40">
+                                </a>
+                            </td>
+
+                            <td>{{ car.status }}</td>
+                            <td>
+                                <a href="{{ path('admin_car_show', {'id': car.id}) }}" class="btn btn-block btn-info">show</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('admin_car_edit', {'id': car.id}) }}" class="btn btn-block btn-info">edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="16">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+
+
+            </div>
+        </section>
+    </div>
+
+    <!-- General JS Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="public/assets/js/stisla.js"></script>
+
+    <!-- JS Libraies -->
+
+    <!-- Template JS File -->
+    <script src="{{asset('assets')}}/js/scripts.js"></script>
+    <script src="{{asset('assets')}}/js/custom.js"></script>
+
+    <!-- Page Specific JS File -->
+
+
+{% endblock %}
+

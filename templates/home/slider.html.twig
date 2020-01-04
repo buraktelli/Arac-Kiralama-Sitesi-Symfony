@@ -1,0 +1,45 @@
+<section id="intro">
+    <div class="jumbotron masthead">
+        <div class="container">
+            <!-- slider navigation -->
+            <div class="sequence-nav">
+                <div class="prev">
+                    <span></span>
+                </div>
+                <div class="next">
+                    <span></span>
+                </div>
+            </div>
+            <!-- end slider navigation -->
+            <div class="row">
+                <div class="span12">
+                    <div id="slider_holder">
+                        <div id="sequence">
+                            <ul>
+
+                                {% for rs in slider %}
+                                    <!-- Layer 1 -->
+                                    <li>
+                                        <div class="info animate-in">
+                                            <h2>{{ rs.title }}</h2>
+                                            <br>
+                                            <h3>{{rs.model}}</h3>
+                                            <p>{{ rs.description }}</p>
+                                            <a class="btn btn-success" href="{{ path('car_show', {'id': rs.id}) }}">Learn more &raquo;</a>
+                                        </div>
+                                        <img class="slider_img animate-in" src="{{asset('uploads/' ~ rs.image )}}" alt="" style="height: 350px">
+                                    </li>
+                                {% endfor %}
+
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+                    <!-- Sequence Slider::END-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

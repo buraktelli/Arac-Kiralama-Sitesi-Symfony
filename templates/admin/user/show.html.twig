@@ -1,0 +1,86 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Show User{% endblock %}
+
+{% block body %}
+    <div class="main-content">
+        <section class="section">
+            <div class="section-header">
+            </div>
+            <div class="section-body">
+
+                <h1>Show User</h1>
+
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ user.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Roles</th>
+                        <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Password</th>
+                        <td>{{ user.password }}</td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ user.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Surname</th>
+                        <td>{{ user.surname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Image</th>
+                        <td>
+                            <img src="{{asset('uploads/' ~ user.image )}}" height="60">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>{{ user.status }}</td>
+                    </tr>
+                    <tr>
+                        <th>Created_at</th>
+                        <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Updated_at</th>
+                        <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <a href="{{ path('admin_user_index') }}">back to list</a>
+
+                <a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>
+
+                {{ include('admin/user/_delete_form.html.twig') }}
+            </div>
+        </section>
+    </div>
+
+    <!-- General JS Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="public/assets/js/stisla.js"></script>
+
+    <!-- JS Libraies -->
+
+    <!-- Template JS File -->
+    <script src="{{asset('assets')}}/js/scripts.js"></script>
+    <script src="{{asset('assets')}}/js/custom.js"></script>
+
+    <!-- Page Specific JS File -->
+{% endblock %}

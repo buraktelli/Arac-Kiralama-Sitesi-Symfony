@@ -1,0 +1,79 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Show Comment{% endblock %}
+
+{% block body %}
+    <div class="main-content">
+        <section class="section">
+            <div class="section-header">
+                <h1>Show Comment</h1>
+            </div>
+            <div class="section-body">
+
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ comment.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Subject</th>
+                        <td>{{ comment.subject }}</td>
+                    </tr>
+                    <tr>
+                        <th>Comment</th>
+                        <td>{{ comment.comment }}</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>{{ comment.status }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ip</th>
+                        <td>{{ comment.ip }}</td>
+                    </tr>
+                    <tr>
+                        <th>Userid</th>
+                        <td>{{ comment.userid }}</td>
+                    </tr>
+                    <tr>
+                        <th>Created_at</th>
+                        <td>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Updated_at</th>
+                        <td>{{ comment.updatedAt ? comment.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Rate</th>
+                        <td>{{ comment.rate }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <a href="{{ path('admin_comment_index') }}">back to list</a>
+
+                <a href="{{ path('admin_comment_edit', {'id': comment.id}) }}">edit</a>
+
+                {{ include('admin/comment/_delete_form.html.twig') }}
+            </div>
+        </section>
+    </div>
+
+    <!-- General JS Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="public/assets/js/stisla.js"></script>
+
+    <!-- JS Libraies -->
+
+    <!-- Template JS File -->
+    <script src="{{asset('assets')}}/js/scripts.js"></script>
+    <script src="{{asset('assets')}}/js/custom.js"></script>
+
+    <!-- Page Specific JS File -->
+{% endblock %}
+

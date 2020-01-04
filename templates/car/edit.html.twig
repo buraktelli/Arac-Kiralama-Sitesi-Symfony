@@ -1,0 +1,61 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %} {{ app.user.name }} Cars {% endblock %}
+
+{% block body %}
+    <section id="subintro">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="centered">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb notop">
+                        <li><a href="#">Home</a><span class="divider">/</span></li>
+                        <li class="active">Blog left sidebar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+
+                {{ include ('user/usermenu.html.twig') }}
+
+                <div class="span7">
+                    <!-- start article 1 -->
+                    <article class="blog-post">
+                        <div class="post-heading">
+                            <h3><a href="#">Edit Cars</a></h3>
+                        </div>
+                        <div class="row">
+                            <div class="span8">
+
+                                {{ include('car/_form.html.twig', {'button_label': 'Update'}) }}
+
+                                <a href="{{ path('user_car_index') }}">back to list</a>
+
+                                {{ include('car/_delete_form.html.twig') }}
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+

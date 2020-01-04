@@ -1,0 +1,44 @@
+<header>
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <a class="brand logo" href="/"><img src="{{asset('uploads')}}/homelogo2.png" alt="" style="height: 55px"></a>
+            <div class="container">
+                <!-- logo -->
+
+                <!-- end logo -->
+                <!-- top menu -->
+                <div class="navigation">
+                    <nav>
+                        <ul class="nav topnav">
+                            <li class="dropdown active">
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <a href="/about">About Us</a>
+                            </li>
+                            <li>
+                                <a href="/contact">Contact</a>
+                            </li>
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li>
+                                    <a href="/user"><img alt="image" src="{{asset('uploads/'~app.user.image)}}" style="height: 50px" class="rounded-circle mr-1">
+                                        {{ app.user.name }}</a>
+                                </li>
+                                <li>
+                                    <a href="/logout">Logout</a>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a href="/loginuser">Login</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                <!-- end menu -->
+            </div>
+        </div>
+    </div>
+</header>

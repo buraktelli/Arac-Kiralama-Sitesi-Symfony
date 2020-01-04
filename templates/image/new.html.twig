@@ -1,0 +1,78 @@
+
+<!-- General CSS Files -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+<!-- CSS Libraries -->
+
+<!-- Template CSS -->
+<link rel="stylesheet" href="{{asset('assets')}}/css/style.css">
+<link rel="stylesheet" href="{{asset('assets')}}/css/components.css">
+
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-6">
+        <div class="card">
+            <form role="form" name="image" action="{{ path('user_image_new',{'id':id}) }}" method="post" enctype="multipart/form-data">
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input class="form-control" type="text"  id="image_title" name="image[title]" maxlength="50">
+                        <input type="hidden" class="form-control" id="image_car" name="image[car]" value="{{ id }}">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <label for="exampleInputFile">Gallery Image</label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" required="" id="image_image" name="image[image]">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose Fİle</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-right">
+                    <button class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Image</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for image in images %}
+        <tr>
+            <td>{{ image.id }}</td>
+            <td>{{ image.title }}</td>
+            <td>
+                <img src="{{ asset('uploads/' ~ image.image) }}" height="50">
+            </td>
+            <td>
+                <form method="post" action="{{ path('user_image_delete', {'id': image.id,'cid': id} )}}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ image.id) }}">
+                    <button class="btn btn-block btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="4">no records found</td>
+        </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+

@@ -1,0 +1,77 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Comments{% endblock %}
+
+{% block body %}
+    <div class="main-content">
+        <section class="section">
+            <div class="section-header">
+                <h1>Comments</h1>
+            </div>
+            <div class="section-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Subject</th>
+                        <th>Comment</th>
+                        <th>Status</th>
+                        <th>Ip</th>
+                        <th>User</th>
+                        <th>Car</th>
+                        <th>Created_at</th>
+                        <th>Rate</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for comment in comments %}
+
+                            <td>{{ comment.id }}</td>
+                            <td>{{ comment.subject }}</td>
+                            <td>{{ comment.comment }}</td>
+                            <td>{{ comment.status }}</td>
+                            <td>{{ comment.ip }}</td>
+                            <td>
+                                <a href="{{ path('admin_user_show', {'id': comment.userid}) }}"> {{ comment.name }} {{ comment.surname }}</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('admin_car_show', {'id': comment.carid}) }}">{{ comment.title }}</a>
+                            </td>
+                            <td>{{ comment.created_at}}</td>
+                            <td>{{ comment.rate }}</td>
+                            <td>
+                                <a class="btn btn-success" href="{{ path('admin_comment_show', {'id': comment.id}) }}">show</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-success" href="{{ path('admin_comment_edit', {'id': comment.id}) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="10">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- General JS Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="public/assets/js/stisla.js"></script>
+
+    <!-- JS Libraies -->
+
+    <!-- Template JS File -->
+    <script src="{{asset('assets')}}/js/scripts.js"></script>
+    <script src="{{asset('assets')}}/js/custom.js"></script>
+
+    <!-- Page Specific JS File -->
+{% endblock %}
+

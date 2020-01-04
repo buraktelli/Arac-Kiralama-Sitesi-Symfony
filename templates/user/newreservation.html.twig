@@ -1,0 +1,124 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }} Profile{% endblock %}
+
+
+{% block body %}
+    <section id="subintro">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="centered">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb notop">
+                        <li><a href="#">Home</a><span class="divider">/</span></li>
+                        <li class="active">Reservation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+
+                {{ include ('user/usermenu.html.twig') }}
+
+                <div class="col-md-10">
+                    <!-- start article 1 -->
+                    <article class="blog-post">
+                        <div class="post-heading">
+                        </div>
+                        <div class="row">
+                            <div class="span8">
+                                <H3>Reservation Form</H3>
+                                <table class="table">
+                                    <tr>
+                                        <th>Car: </th>
+                                        <td>{{ car.title }}/{{ car.model }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Price: </th>
+                                        <td>{{ car.price }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Checkin Date: </th>
+                                        <td>{{ data.checkin | date("m/d/Y") }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Checkout Date: </th>
+                                        <td>{{ data.checkout | date("m/d/Y") }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Days: </th>
+                                        <td>{{ data.days }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total Price: </th>
+                                        <td>{{ data.total }}</td>
+                                    </tr>
+                                </table>
+
+                                <form name="reservation" method="post" role="form">
+
+                                    <div class="row">
+
+                                        <div class="span4 form-group">
+                                            <input type="text" id="reservation_name" name="reservation[name]" class="form-control" value="{{ app.user.name }}" placeholder="Your Name" data-rule="minlen:4"
+                                                   data-msg="Please enter at least 4 chars" />
+                                            <div class="validation"></div>
+                                        </div>
+
+                                        <div class="span4 form-group">
+                                            <input type="text" id="reservation_surname" name="reservation[surname]" class="form-control" value="{{ app.user.surname }}" placeholder="Your Surname" data-rule="minlen:4"
+                                                   data-msg="Please enter at least 4 chars" />
+                                            <div class="validation"></div>
+                                        </div>
+
+                                        <div class="span4 form-group">
+                                            <input type="email" class="form-control" id="reservation_email" name="reservation[email]" value="{{ app.user.email }}" placeholder="Your Email" data-rule="email"
+                                                   data-msg="Please enter a valid email" />
+                                            <div class="validation"></div>
+                                        </div>
+                                        <div class="span8 form-group">
+                                            <input type="text" class="form-control" id="reservation_phone" name="reservation[phone]" placeholder="Phone Number" data-rule="minlen:4"
+                                                   data-msg="Please enter at least 8 chars of subject" />
+                                            <div class="validation"></div>
+                                        </div>
+                                        <div class="span8 form-group">
+                <textarea class="form-control" id="reservation_message" name="reservation[message]" maxlength="255" rows="5" data-rule="required" data-msg="Please write something for us"
+                          placeholder="message"></textarea>
+                                            <div class="validation"></div>
+                                            <div class="text-center">
+                                                <input type="hidden" id="checkin" name="checkin" value="{{ data.checkin|date("m/d/Y") }}">
+                                                <input type="hidden" id="days" name="days" value="{{ data.days }}"><br>
+                                                ***** CREDIT CARD INFORMATION *****<br>
+                                                <input type="hidden" name="token" value="{{ csrf_token('form-reservation') }}"/>
+                                                <button class="btn btn-color1 btn-rounded" type="submit">Send Reservation</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

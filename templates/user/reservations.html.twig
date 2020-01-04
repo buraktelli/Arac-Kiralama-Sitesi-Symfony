@@ -1,0 +1,111 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %} {{ app.user.name }} Reservations {% endblock %}
+
+
+{% block body %}
+    <section id="subintro">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="centered">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb notop">
+                        <li><a href="#">Home</a><span class="divider">/</span></li>
+                        <li class="active">Reservations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+
+                {{ include ('user/usermenu.html.twig') }}
+
+                <div class="span7">
+                    <!-- start article 1 -->
+                    <article class="blog-post">
+                        <div class="post-heading">
+                            <h3><a href="#">My Reservations</a></h3>
+                        </div>
+                        <div class="row">
+                            <div class="span8">
+
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Car</th>
+                                        <th>Model</th>
+                                        <th>Name</th>
+                                        <th>Surname</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Checkin</th>
+                                        <th>Checkout</th>
+                                        <th>Days</th>
+                                        <th>Total</th>
+                                        <th>Message</th>
+                                        <th>Note</th>
+                                        <th>Status</th>
+                                        <th>Created_at</th>
+                                        <th>actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for reservation in reservations %}
+                                        <tr>
+                                            <td>
+                                                <a href="{{ path("car_show",{"id":reservation.carid}) }}">
+                                                    {{ reservation.cname }}
+                                                </a>
+                                            </td>
+                                            <td>{{ reservation.cmodel }}</td>
+                                            <td>{{ reservation.name }}</td>
+                                            <td>{{ reservation.surname }}</td>
+                                            <td>{{ reservation.email }}</td>
+                                            <td>{{ reservation.phone }}</td>
+                                            <td>{{ reservation.checkin|date('d-m-Y')}}</td>
+                                            <td>{{ reservation.checkout|date('d-m-Y')}}</td>
+                                            <td>{{ reservation.days }}</td>
+                                            <td>{{ reservation.total }}</td>
+                                            <td>{{ reservation.message }}</td>
+                                            <td>{{ reservation.note }}</td>
+                                            <td>{{ reservation.status }}</td>
+                                            <td>{{ reservation.created_at }}</td>
+                                            <td>
+                                                <a href="{{ path('user_reservation_show', {'id': reservation.id}) }}">show</a>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="18">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

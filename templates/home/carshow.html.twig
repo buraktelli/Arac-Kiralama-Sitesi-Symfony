@@ -1,0 +1,189 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %} {{ car.title }} {% endblock %}
+{% block keywords %} {{ car.keywords }} {% endblock %}
+{% block description %} {{ car.description }} {% endblock %}
+
+{% block body %}
+    <section id="subintro">
+        <div class="jumbotron subhead" id="overview">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="centered">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <ul class="breadcrumb notop">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="maincontent">
+        <div class="container">
+            <div class="row">
+                <div class="span7">
+                    <div id="slider_holder">
+                        <div id="sequence">
+                            <ul>
+                                {% for image in images %}
+                                    <!-- Layer 1 -->
+                                    <li>
+                                        <div class="info animate-in">
+                                            <h2>{{ image.title }}</h2>
+                                            <br>
+                                        </div>
+
+                                        <img class="slider_img animate-in" src="{{asset('uploads/' ~ image.image )}}" alt="" style="height: 350px">
+
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="span5">
+                    <!-- start article 1 -->
+                    <article class="blog-post">
+                        <div class="post-heading">
+                            <h3><a href="#">Car Detail / {{ car.marka }}</a></h3>
+                        </div>
+                        <div class="row">
+                            <div class="span8">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <th>Title</th>
+                                        <td>{{ car.title }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Description</th>
+                                        <td>{{ car.description }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Model</th>
+                                        <td>{{ car.model }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone</th>
+                                        <td>{{ car.phone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>{{ car.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>City</th>
+                                        <td>{{ car.country }} / {{ car.city }} / {{ car.location }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="">
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active"><a href="#home" data-toggle="tab">Price</a></li>
+                    <li><a href="#profile" data-toggle="tab">Detail</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#dropdown1" data-toggle="tab">Comments</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="home">
+                        <p>
+                            {{car.price}}$
+                        </p>
+                        <td>
+                            <form action="{{ path('user_reservation_new',{'cid':car.id}) }}" method="post">
+                                Days: <input type="number" id="days" name="days" value="1" style="...">
+                                Checkin: <input type="date" id="checkin" name="checkin" style="width: 140px" required>
+                                    <input type="submit" value="Reserve Car" class="btn btn-success">
+                            </form>
+                        </td>
+                    </div>
+                    <div class="tab-pane fade" id="profile">
+                        <p>
+                            {{ car.detail | raw }}
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="dropdown1">
+                        <p>
+                            {% for rs in comments %}
+                        <h4>{{ rs.subject }} [Rate: {{ rs.rate }}]</h4>
+                        {{ rs.comment }}
+                        <hr>
+                        {% endfor %}
+                        {% if app.user %}
+                            <H5>Write your comment</H5>
+                            <form name="comment" action="{{ path('user_new_comment',{'id':car.id}) }}" method="post" role="form" class="contactForm">
+                                <div class="row">
+                                    <div class="span3 form-group">
+                                        <input type="text" class="form-control" id="comment_subject" name="comment[subject]" placeholder="Subject" data-rule="minlen:4"
+                                               data-msg="Please enter at least 8 chars of subject" />
+                                        <div class="validation">
+
+                                        </div>
+                                    </div>
+                                    <div class="span1 form-group">
+                                        <div class="validation">
+                                            <select id="comment_rate" name="comment[rate]" class="form-control">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <br><br>
+                                    <div class="span7 form-group">
+                                    <textarea class="form-control" id="comment_comment" name="comment[comment]" maxlength="255" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="comment">
+                                    </textarea>
+                                        <div class="validation"></div>
+                                        <div class="text-center">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <input type="hidden" name="token" value="{{ csrf_token('comment') }}"/>
+                                <button class="btn btn-color1 btn-rounded" type="submit">Send Comment</button>
+
+                            </form>
+                        {% else %}
+                            <li>
+                                <a href="/loginuser">If you want to add comment please Login</a>
+                            </li>
+                        {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+{% endblock %}
+

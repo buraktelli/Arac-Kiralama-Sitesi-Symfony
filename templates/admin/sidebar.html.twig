@@ -1,0 +1,54 @@
+<div class="main-sidebar">
+    <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+            <a href="/admin">Admin Araç Kiralama</a>
+        </div>
+        <div class="sidebar-brand sidebar-brand-sm">
+            <a href="index.html">Admin</a>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="menu-header">Reservations</li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Reservations</span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="/admin/reservation/new">New</a></li>
+                    <li><a class="nav-link" href="/admin/reservation/Accepted">Accepted</a></li>
+                    <li><a class="nav-link" href="/admin/reservation/Canceled">Canceled</a></li>
+                    <li><a class="nav-link" href="/admin/reservation/Completed">Completed</a></li>
+                </ul>
+            </li>
+            <li class="menu-header">TOOLS</li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>CATEGORİES</span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="/admin/category">Category</a></li>
+                </ul>
+            </li>
+
+
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-car"></i> <span>CARS</span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="/admin/car">Car</a></li>
+
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>USERS</span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="/admin/user">User</a></li>
+
+                </ul>
+            </li>
+
+            <li class="menu-header">SETTINGS</li>
+            <li ><a href="{{path('setting_index')}}"><i class="far fa-circle"></i>Settings</a></li>
+            <li ><a href="/admin/message"><i class="far fa-comment"></i>Messages</a></li>
+            <li ><a href="/admin/comment"><i class="far fa-user"></i>User Comments</a></li>
+
+
+
+        </ul>
+
+    </aside>
+</div>
